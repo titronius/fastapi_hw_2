@@ -1,0 +1,84 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8080
+
+
+# создание юзера
+POST {{baseUrl}}/v1/user/
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "password": "1234"
+}
+###
+
+# получение токена
+POST {{baseUrl}}/v1/login/
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "password": "1234"
+}
+###
+
+# получение юзера
+GET {{baseUrl}}/v1/user/7
+
+###
+
+# изменение юзера
+PATCH  {{baseUrl}}/v1/user/7
+Content-Type: application/json
+x-token: 36b3f90a-6d3f-44f5-bfe7-e2345a9971eb
+
+{
+    "name": "новое имя"
+}
+
+###
+
+# удаление юзера
+DELETE {{baseUrl}}/v1/user/7
+x-token: ae62965e-86c3-4f0a-ba9d-6a99d0d422c2
+
+###
+
+# создание объявления
+POST {{baseUrl}}/v1/advertisement/
+Content-Type: application/json
+x-token: ae62965e-86c3-4f0a-ba9d-6a99d0d422c2
+
+{
+    "title": "Объявление",
+    "description": "Самое лучшее объявление",
+    "price": 100.2,
+    "author": "titronius"
+}
+
+###
+
+# получение объявления
+GET {{baseUrl}}/v1/advertisement/5
+
+###
+# изменение объявления
+PATCH  {{baseUrl}}/v1/advertisement/5
+Content-Type: application/json
+x-token: 36b3f90a-6d3f-44f5-bfe7-e2345a9971eb
+
+{
+    "title": "Объявление измененное",
+    "price": 100.2
+}
+
+###
+
+# удаление объявления
+DELETE {{baseUrl}}/v1/advertisement/5
+x-token: ae62965e-86c3-4f0a-ba9d-6a99d0d422c2
+###
+
+# Поиск по полям
+GET {{baseUrl}}/v1/advertisement?title=Объявление&description=Самое лучшее объявление
